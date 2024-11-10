@@ -1,8 +1,3 @@
-#------------------------------------------------------------------------------#
-#---------- SCRIPT FOR PLOTING PETROCHRONOLOGICAL TRACE ELEMENT DATA ----------#
-#--------------------- By Lucas R. Tesser, USP - Brazil -----------------------#
-#------------------------------------------------------------------------------#
-
 #------------------------ Uploading the libraries-------------------------------
 library(openxlsx)
 library(ggplot2)
@@ -24,14 +19,6 @@ chon <- data.frame('Reference' = c('CI_McDonough_Sun_1995'),
                    'Ho' = c(0.0546), 'Er' = c(0.16), 'Tm' = c(0.0247), 
                    'Yb' = c(0.161), stringsAsFactors = FALSE)
 
-equil <- data.frame('Reference' = c('Rubatto2006-SGL5', 'Hacker2019-E9819D1'), 
-                   'La' = c(12172786, 25148575), 'Ce' = c(3207594, 17011927), 
-                   'Pr' = c(567768, 3244703), 'Nd' = c(112660,406824),
-                   'Sm' = c(5936, 10756), 'Eu' =c(1283, 1356), 
-                   'Gd' = c(644, 1456), 'Tb' = c(163, 638), 'Dy' = c(56, 326), 
-                   'Ho' = c(24, 161), 'Er' = c(12, 81), 'Tm' = c(6.5, 48), 
-                   'Yb' = c(3.8, 28), stringsAsFactors = FALSE)
-
 # Create a new dataframe to store the normalized values
 normalized_data <- data_org[, c(2, 5, 6:18)]
 
@@ -47,7 +34,7 @@ plot1 <- ggparcoord(normalized_data,
                     groupColumn = 1, # 1 = Age
                     showPoints = FALSE, # disable/enable points in the lines
                     scale="globalminmax", 
-                    title = "Sample DLT39", # graph title
+                    title = "My sample", # graph title
                     boxplot = FALSE) +
   scale_y_log10(oob = scales::squish_infinite, 
                 limits = c(1, 1000000)) + # define limits of y-axis
@@ -66,7 +53,7 @@ plot2 <- ggparcoord(normalized_data,
                     groupColumn = 2, # 2 = Y in ppm
                     showPoints = FALSE, # disable/enable points in the lines
                     scale="globalminmax", 
-                    title = "Sample DLT39", # graph title
+                    title = "My sample", # graph title
                     boxplot = FALSE) +
   scale_y_log10(oob = scales::squish_infinite, 
                 limits = c(1, 1000000)) + # define limits of y-axis
@@ -79,20 +66,5 @@ plot2 <- ggparcoord(normalized_data,
         panel.grid.minor = element_blank()) +
   geom_line(linewidth = 1, alpha = 0.3) # Change line thickness and alpha
 
-# Third plot (equilibrium monazite-garnet)
-# plot3 <- ggparcoord(normalized_equil, 
-#                    columns = 1:13, # Range of data to be plotted
-#                    showPoints = TRUE, # disable/enable points in the lines
-#                    scale="globalminmax", 
-#                    title = "Monazite–garnet REE equilibrium",
-#                    boxplot = FALSE) +
-#  scale_y_log10(oob = scales::squish_infinite, 
-#                limits = c(1, 100000000)) + # define limits of y-axis
-#  theme_light() +
-#  labs(x = "Trace Element", y = "Monazite-Garnet") +
-#  theme(panel.grid.major = element_blank(),
-#        panel.grid.minor = element_blank()) +
-#  geom_line(linewidth = 0.6, alpha = 0.8) # Change line thickness and alpha
 # Arrange the plots side by side
 grid.arrange(plot1, plot2, ncol = 2)
-# --------------------------------- END --------------------------------------#
