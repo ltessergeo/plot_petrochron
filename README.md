@@ -12,8 +12,8 @@ To plot trace-element partitioning between monazite and garnet coloured by age a
 
 Check some examples:
 
-![plot1 example](Example1.png "example1")
+![plot1 example](Example1.png "Trace_elements_diagram.R")
 
-![plot2 example](Example 2.png "example2")
+![plot2 example](Example2.png "Mnz-Grt_partitioning.R")
 
-% script based on "Coloured Trace Element Spider Plots.R" (prof. Kyle Larson) - DOI 10.17605/OSF.IO/P46MB %
+% script inspired on "Coloured Trace Element Spider Plots.R" (prof. Kyle Larson) - DOI 10.17605/OSF.IO/P46MB %
