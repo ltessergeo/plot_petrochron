@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------#
-#-------------- SCRIPT FOR PLOTING MONAZITE TRACE ELEMENTS  -------------------#
+#---------- SCRIPT FOR PLOTING MONAZITE-GARNET HREE PARTITIONING  -------------#
 #--------------------- By Lucas R. Tesser, USP - Brazil -----------------------#
 #------------------------------------------------------------------------------#
 
@@ -24,6 +24,7 @@ chon <- data.frame('Reference' = c('Grt1'),
                    'Ho' = c(2.9180), 'Er' = c(8.5830), 'Tm' = c(1.5190), 
                    'Yb' = c(11.9800), stringsAsFactors = FALSE)
 
+# You can add other samples below
 # chon <- data.frame('Reference' = c('Grt2'), 
 #                    'La' = c(0.2491), 'Ce' = c(0.5952), 'Pr' = c(0.1451), 
 #                    'Nd' = c(0.8544), 'Sm' = c(1.4110), 'Eu' =c(0.5420), 
@@ -38,13 +39,14 @@ chon <- data.frame('Reference' = c('Grt1'),
 #                    'Ho' = c(0.9535), 'Er' = c(1.9540), 'Tm' = c(0.2725), 
 #                    'Yb' = c(1.3140), stringsAsFactors = FALSE)
 
-equil <- data.frame('Reference' = c('Rubatto2006-SGL5', 'Hacker2019-E9819D1'), 
-                   'La' = c(12172786, 25148575), 'Ce' = c(3207594, 17011927), 
-                   'Pr' = c(567768, 3244703), 'Nd' = c(112660,406824),
-                   'Sm' = c(5936, 10756), 'Eu' =c(1283, 1356), 
-                   'Gd' = c(644, 1456), 'Tb' = c(163, 638), 'Dy' = c(56, 326), 
-                   'Ho' = c(24, 161), 'Er' = c(12, 81), 'Tm' = c(6.5, 48), 
-                   'Yb' = c(3.8, 28), stringsAsFactors = FALSE)
+
+equil <- data.frame('Reference' = c('Rubatto2006-SGL5'), 
+                    'La' = c(12172786), 'Ce' = c(3207594), 
+                    'Pr' = c(567768), 'Nd' = c(112660),
+                    'Sm' = c(5936), 'Eu' =c(1283), 
+                    'Gd' = c(644), 'Tb' = c(163), 'Dy' = c(56), 
+                    'Ho' = c(24), 'Er' = c(12), 'Tm' = c(6.5), 
+                    'Yb' = c(3.8), stringsAsFactors = FALSE)
 
 # Create a new dataframe to store the normalized values
 normalized_data <- data_org[, c(2, 5, 6:18)]
@@ -61,7 +63,7 @@ plot1 <- ggparcoord(normalized_data,
                     groupColumn = 1, # 1 = Age
                     showPoints = FALSE, # disable/enable points in the lines
                     scale="globalminmax", 
-                    title = "DLT147", # graph title
+                    title = "Example 1", # graph title
                     boxplot = FALSE) +
   scale_y_log10(oob = scales::squish_infinite, 
                 limits = c(1.0, 10000)) + # define limits of y-axis
@@ -79,7 +81,7 @@ plot1 <- ggparcoord(normalized_data,
                     columns = 7:13, # Range of data to be plotted
                     showPoints = TRUE, # disable/enable points in the lines
                     scale="globalminmax", 
-                    title = "Monazite–garnet REE equilibrium",
+                    title = "Monazite–garnet Rubatto et al. 2006",
                     boxplot = FALSE) +
   scale_y_log10(oob = scales::squish_infinite, 
                 limits = c(1.0, 10000)) + # define limits of y-axis
